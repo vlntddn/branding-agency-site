@@ -45,10 +45,10 @@ export default function Contact() {
                 Email
               </p>
               <a
-                href="mailto:hello@brandingagency.co"
+                href="mailto:valentinddn2803@gmail.com"
                 className="mt-2 inline-block text-2xl font-medium tracking-tight hover:text-signal md:text-3xl"
               >
-                hello@brandingagency.co
+                valentinddn2803@gmail.com
               </a>
 
               <p className="mt-10 font-mono text-xs tracking-[0.2em] text-ink-soft uppercase">

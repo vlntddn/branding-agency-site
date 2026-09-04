@@ -49,10 +49,10 @@ export default function Footer() {
             <ul className="mt-3 space-y-2 text-sm">
               <li>
                 <a
-                  href="mailto:hello@brandingagency.co"
+                  href="mailto:valentinddn2803@gmail.com"
                   className="hover:text-signal"
                 >
-                  hello@brandingagency.co
+                  valentinddn2803@gmail.com
                 </a>
               </li>
               <li className="text-ink-soft">Remote-first, worldwide</li>
