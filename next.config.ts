@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  trailingSlash: true,
-  basePath: "/branding-agency-site",
+    output: "export",
+    trailingSlash: true,
 };
 
 export default nextConfig;
