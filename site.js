@@ -1,50 +1,53 @@
-/* Studio Dudin — monochrome site behavior.
-   Safe by default: if this script fails to run, or the viewer has asked
-   for reduced motion, nothing here ever hides content — the CSS only
-   reveals-on-scroll under body.js-reveal, which this file alone adds. */
+/* Studio Dudin — site behaviour. Nothing here hides content if it fails. */
 (function () {
-  try {
-    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Mobile nav toggle already runs inline per-page; nothing to do here.
-
-    if (reduceMotion) return;
-
-    document.documentElement.classList.add('js-ready');
-    document.body.classList.add('js-reveal');
-
-    if ('IntersectionObserver' in window) {
-      var targets = document.querySelectorAll('section:not(.hero) .wrap > *, .index-row');
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      targets.forEach(function (el) { io.observe(el); });
-    } else {
-      // No IntersectionObserver support — reveal everything immediately.
-      document.querySelectorAll('section:not(.hero) .wrap > *, .index-row').forEach(function (el) {
-        el.classList.add('is-visible');
-      });
-    }
-
-    // Subtle cursor-kinetic effect on the hero headline — a few pixels of
-    // parallax, nothing more. Skipped entirely under reduced motion above.
-    var heroH1 = document.querySelector('.hero h1');
-    if (heroH1) {
-      heroH1.style.transition = 'transform 0.3s ' + 'cubic-bezier(0.16, 1, 0.3, 1)';
-      window.addEventListener('mousemove', function (e) {
-        var cx = window.innerWidth / 2;
-        var cy = window.innerHeight / 2;
-        var dx = (e.clientX - cx) / cx;
-        var dy = (e.clientY - cy) / cy;
-        heroH1.style.transform = 'translate(' + (dx * 6).toFixed(2) + 'px, ' + (dy * 4).toFixed(2) + 'px)';
-      }, { passive: true });
-    }
-  } catch (err) {
-    // Fail silent and safe — content stays visible via the default CSS.
+  // Mobile menu
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('main-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   }
+
+  // Contact form: the site is static (GitHub Pages), so the form composes an
+  // email in the visitor's own mail app instead of posting to a server.
+  var form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = form.elements;
+      var subject = 'Studio Dudin — ' + (f.company.value ? f.company.value : f.name.value);
+      var body = [
+        'Name: ' + f.name.value,
+        'Email: ' + f.email.value,
+        'Company: ' + (f.company.value || '—'),
+        'Stage: ' + f.stage.value,
+        'Interested in: ' + f.interest.value,
+        '',
+        f.message.value
+      ].join('\n');
+      var href = 'mailto:' + form.getAttribute('data-to') +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+      window.location.href = href;
+      var status = document.getElementById('form-status');
+      if (status) status.textContent = 'Your email app should open with the message ready to send. If it doesn’t, write to ' + form.getAttribute('data-to') + ' directly.';
+    });
+  }
+
+  // Gentle reveal on scroll — skipped under reduced motion.
+  try {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+    var targets = document.querySelectorAll('section:not(.hero):not(.page-hero) .wrap > *');
+    if (!targets.length) return;
+    document.body.classList.add('js-reveal');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+  } catch (err) { /* fail safe: content stays visible */ }
 })();
