@@ -370,3 +370,15 @@ body.js-reveal .reveal.is-visible { opacity: 1; transform: none; }
 .tiers li { margin-bottom: 10px; }
 @media (max-width: 760px) { .tiers { grid-template-columns: 1fr; } }
 .evidence-figure.narrow img { max-width: 560px; }
+
+/* Bilingual quotes: Italian original, translation right after */
+.tr { color: var(--muted); font-style: normal; }
+em[lang="it"] { font-style: italic; }
+
+/* Empty "next case" card */
+.work-card.is-next .work-thumb { border-style: dashed; border-color: var(--ink); background: transparent; }
+.work-card.is-next .next-mark { font-family: var(--font-mono, "IBM Plex Mono", monospace); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.work-card.is-next h3 { font-style: italic; }
+
+/* Contact form: spam honeypot (hidden from people) */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

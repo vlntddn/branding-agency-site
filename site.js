@@ -14,25 +14,39 @@
   // email in the visitor's own mail app instead of posting to a server.
   var form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+    var status = document.getElementById('form-status');
+    var button = form.querySelector('button[type=submit]');
+    var say = function (t) { if (status) status.textContent = t; };
+    var mailtoFallback = function () {
       var f = form.elements;
       var subject = 'Studio Dudin — ' + (f.company.value ? f.company.value : f.name.value);
-      var body = [
-        'Name: ' + f.name.value,
-        'Email: ' + f.email.value,
-        'Company: ' + (f.company.value || '—'),
-        'Stage: ' + f.stage.value,
-        'Interested in: ' + f.interest.value,
-        '',
-        f.message.value
-      ].join('\n');
-      var href = 'mailto:' + form.getAttribute('data-to') +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(body);
-      window.location.href = href;
-      var status = document.getElementById('form-status');
-      if (status) status.textContent = 'Your email app should open with the message ready to send. If it doesn’t, write to ' + form.getAttribute('data-to') + ' directly.';
+      var body = ['Name: ' + f.name.value, 'Email: ' + f.email.value, 'Company: ' + (f.company.value || '—'),
+        'Stage: ' + f.stage.value, 'Interested in: ' + f.interest.value, '', f.message.value].join('\n');
+      window.location.href = 'mailto:' + form.getAttribute('data-to') +
+        '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      say('Your email app should open with the message ready to send. If it doesn’t, write to ' + form.getAttribute('data-to') + ' directly.');
+    };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var endpoint = form.getAttribute('data-endpoint');
+      if (!endpoint || !window.fetch || !window.URLSearchParams) { mailtoFallback(); return; }
+      var data = new URLSearchParams(new FormData(form));
+      data.append('page', window.location.href);
+      if (button) { button.disabled = true; button.textContent = 'Sending…'; }
+      say('');
+      fetch(endpoint, { method: 'POST', body: data })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res || !res.ok) throw new Error('rejected');
+          form.reset();
+          form.classList.add('is-sent');
+          if (button) button.textContent = 'Sent';
+          say('Thank you — your message is in. I’ll reply from ' + form.getAttribute('data-to') + ', usually within a day.');
+        })
+        .catch(function () {
+          if (button) { button.disabled = false; button.textContent = 'Send'; }
+          say('Something went wrong on my side. Please write to ' + form.getAttribute('data-to') + ' — or press Send again.');
+        });
     });
   }
 
