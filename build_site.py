@@ -6,7 +6,7 @@ OUT = os.path.dirname(os.path.abspath(__file__))
 EMAIL = "hello@studiodudin.com"
 # Google Apps Script web-app URL (form → "Studio Dudin — Site inquiries" sheet + email to EMAIL).
 # Empty = the form falls back to composing an email in the visitor's mail app.
-FORM_ENDPOINT = ""
+FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbz1nMEwYZVbA4vdsZsjTs1JgqZWeOoLk9m_YjhgDcfxmfBoQBJPPGKQM6UPHVeDYTHi6w/exec"
 FORM_BUTTON = "Send" if FORM_ENDPOINT else "Write the email"
 GUMROAD = "https://vlntddn.gumroad.com"   # one place to change the store link
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
