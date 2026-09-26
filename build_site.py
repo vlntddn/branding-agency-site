@@ -3,7 +3,7 @@
 import os
 
 OUT = os.path.dirname(os.path.abspath(__file__))
-EMAIL = "valentinddn2803@gmail.com"
+EMAIL = "hello@studiodudin.com"
 GUMROAD = "https://vlntddn.gumroad.com"   # one place to change the store link
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
@@ -194,7 +194,7 @@ WORK_CARDS = """
         <div class="work-thumb no-photo"><img src="brand-assets/d-mark-ink.svg" alt=""></div>
         <span class="work-kicker">Positioning Audit · Past affiliation disclosed</span>
         <h3>Socialbooth</h3>
-        <p>A strong homepage promise that doesn't survive the trip to the paid landing pages.</p>
+        <p>A mission built on emotion, hidden on the one page buyers don't read — and a homepage that sounds like every competitor.</p>
       </a>
     </div>
 """
@@ -583,28 +583,157 @@ def gap(left_t, left, right_t, right):
 
 CASE_CLOSE = closing(h2="Want this kind of read on your own brand?")
 
-# --- Socialbooth (disclosed past affiliation; audit only)
+# --- Socialbooth (disclosed past affiliation; audit only) — full Positioning Audit, 26 Sep 2026
+def figure(src, alt, cap, cls=""):
+    return f"""
+    <figure class="evidence-figure {cls}">
+      <img src="images/{src}" alt="{alt}" loading="lazy">
+      <figcaption>{cap}</figcaption>
+    </figure>"""
+
+
 SB = case_hero("Case study — Positioning Audit",
-               "Socialbooth: a strong promise that doesn't travel.",
-               "An independent read of Socialbooth's current public brand: where the homepage makes an ownable claim, and where the pages most buyers actually land on quietly take it back.",
-               "Reviewed September 2026 · Scope: homepage and paid-search landing pages at socialbooth.it — public material only.") + \
+               "Socialbooth: the mission says <em>emotion</em>. The homepage says results.",
+               "A full outside read of Socialbooth's public brand, done the way I'd do it for a paying client. The short version: the company's most distinctive idea is already written down — on the one page almost no buyer ever opens.",
+               "Reviewed 26 September 2026 · Scope: homepage, services menu, Photobooth Experience, AI+, Lead generation, Società Benefit, the Milano city page, the case-history archive (70+ entries, 4 read in full), the Trustpilot profile, and the sister domain noleggiophotoboothmilano.it, compared with three direct competitors. Public material only: no interviews, no analytics, nothing internal.") + \
      callout("Disclosure",
-             "Before founding Studio Dudin, I worked at Socialbooth. This page is separate from that job: an unsolicited audit of their <em>current</em> public brand, built only from what anyone can see on their site today — not commissioned, and not drawing on anything learned internally. If anyone at Socialbooth would rather this page not exist, email me and it comes down.") + f"""
+             "Before founding Studio Dudin, I worked at Socialbooth. While I was there I wrote the line <em>“Bring emotions to life.”</em> A version of it — <em>“BRING EMOTION TO LIFE”</em> — is today the company's published mission. That line is the only thing on this page that comes from the inside. Everything else is an unsolicited audit of Socialbooth's <em>current</em> public brand, built from what anyone can see today, not commissioned and not drawing on anything learned internally. If anyone at Socialbooth would rather this page not exist, email me and it comes down.") + f"""
 <section class="section-paper">
   <div class="wrap">
-    <span class="eyebrow">Independent read — today's site</span>
-    <h2>Where the brand stands now, from the outside.</h2>
+    <span class="eyebrow">The finding in one paragraph</span>
+    <div class="summary-box">
+      <p class="lead-line">Socialbooth is a company built on play and emotion, selling itself with the same results language as everyone else in its category.</p>
+      <p>Its proof is genuinely strong — 51 reviews at 4.8 on Trustpilot, more than 70 published case histories, national press. Its mission, its vision, its Trustpilot bio and even the smile inside its logo all say the same thing: people come alive when they play. But the homepage leads with “attract, engage, generate results,” a sentence a direct competitor uses almost word for word. The fix isn't a new idea. It's moving the idea they already have to the place where buyers decide.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-white">
+  <div class="wrap">
+    <span class="eyebrow">Scorecard</span>
+    <h2>Where the brand stands today, in four categories.</h2>
+    {scorecard([("Proof &amp; credibility", "Strong"), ("Differentiation", "Weak"), ("Message consistency", "Weak"), ("Offer clarity", "Mixed")])}
+    <p class="measure muted small" style="margin-top: var(--space-lg);">The pattern is common in companies that grew fast: the delivery and the reputation got ahead of the words. Nothing here needs a rebrand. It needs the existing brand to say one thing, in one place, first.</p>
+  </div>
+</section>
+
+<section class="section-paper">
+  <div class="wrap">
+    <span class="eyebrow">01 — What a buyer sees first</span>
+    <h2>A homepage that could belong to anyone in the category.</h2>
+    {figure("socialbooth-home-hero-it.jpg", "Socialbooth homepage hero: 'Marketing Experience for Corporate Events. Trasformiamo eventi e fiere in spazi che attirano persone, le coinvolgono e generano risultati.' Yellow background, Trustpilot 4.8, press logos.", "socialbooth.it — homepage hero, as published, 26 September 2026 (reviewer avatars blurred)")}
+    <p class="measure">The headline — <em>“Trasformiamo eventi e fiere in spazi che attirano persone, le coinvolgono e generano risultati”</em> — is clear and competent. It's also generic. Here is the hero of Selfieboost, a Milan competitor: <em>“Esperienze interattive con foto, video e intelligenza artificiale per aumentare engagement, visibilità e contenuti condivisibili in tempo reale.”</em> Socialbooth's line under its own headline: <em>“creiamo esperienze interattive che aumentano il tempo di permanenza, producono contenuti condivisibili e raccolgono contatti reali.”</em> Swap the logos and a buyer couldn't tell which is which.</p>
+    <p class="measure">Further down, the homepage has a much sharper sentence — <em>“Non siamo fornitori. Siamo parte del risultato del tuo evento.”</em> — followed by an animated line, <em>“We Create →”</em>, cycling through Intrattenimento, Valore, Future, Connection, Interaction, Lead, Engagement. Seven words, two languages, and the one word the company says it exists for isn't among them.</p>
+    {figure("socialbooth-home-not-suppliers.jpg", "Socialbooth homepage section: 'Non siamo fornitori. Siamo parte del risultato del tuo evento.' followed by an animated 'We Create → Intrattenimento' line.", "socialbooth.it — homepage, second section; the last pill rotates through seven words")}
+  </div>
+</section>
+
+<section class="section-white">
+  <div class="wrap">
+    <span class="eyebrow">02 — Where the real idea lives</span>
+    <h2>“Bring emotion to life” is on the Società Benefit page.</h2>
+    {figure("socialbooth-mission.jpg", "Socialbooth Società Benefit page, Missione section: 'La nostra missione è BRING EMOTION TO LIFE, vogliamo dare vita alle emozioni ai partecipanti degli eventi e fiere in cui è presente Socialbooth.'", "socialbooth.it/societa-benefit — Missione, as published, 26 September 2026", "narrow")}
+    <p class="measure">The same page states a vision a competitor couldn't easily copy: <em>“il gioco crea emozioni, relazioni e fa sentire vivi.”</em> The Trustpilot profile says <em>“Creiamo emozioni condivise durante gli eventi.”</em> The logo turns the two o's of “booth” into a smile. The clients who reviewed them talk about fun and warmth as much as execution — “super divertente,” “soluzioni sempre innovative e memorabili.”</p>
+    {gap("What the homepage leads with", "Attract, engage, generate results. Dwell time, shareable content, real leads. True, and claimed by every serious competitor.",
+         "What the company says it's for", "Bring emotion to life. Play makes people feel alive — and that feeling is what makes them stay, share and leave their email.")}
+    <p class="measure muted">These two aren't in conflict. Emotion is the mechanism; results are the proof. Right now the homepage shows the proof without the mechanism, which is exactly what makes it sound like everyone else.</p>
+  </div>
+</section>
+
+<section class="section-paper">
+  <div class="wrap">
+    <span class="eyebrow">03 — Competitive scan</span>
+    <h2>Nobody in the category owns emotion. Everybody owns “engagement.”</h2>
+    <div class="table-wrap">
+      <table class="scan-table">
+        <thead><tr><th>Brand</th><th>Lead message (homepage)</th><th>Proof on the page</th><th>Who it's for</th></tr></thead>
+        <tbody>
+          <tr class="is-subject"><td>Socialbooth</td><td>Events and fairs that attract people, engage them and generate results.</td><td>Trustpilot 4.8 (51 reviews), 70+ case histories, press logos, ISO badges</td><td>Corporate events, fairs, agencies</td></tr>
+          <tr><td>Selfieboost</td><td>Interactive photo, video and AI experiences to increase engagement, visibility and shareable content.</td><td>Event photo gallery</td><td>Corporate and weddings</td></tr>
+          <tr><td>Babooth</td><td>Branded, customised photobooth rental with instant digital sharing.</td><td>Founded 2013, a portfolio of branded projects for well-known brands</td><td>Corporate and weddings</td></tr>
+          <tr><td>Say Cheese</td><td>A creative studio designing unforgettable experiences for brands and agencies.</td><td>Ten years, case studies, a stated repeat-client rate, openly “not the cheapest”</td><td>Brands and agencies (weddings under a separate name)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="measure" style="margin-top: var(--space-lg);">Two things stand out. Socialbooth has the strongest proof of the four and one of the least distinctive lead messages. And the only competitor with a clear identity — Say Cheese, positioned as a creative studio that is openly not the cheapest — got there by saying what it isn't. Socialbooth already has its equivalent line, <em>“Non siamo fornitori,”</em> and a mission nobody else can claim. It just isn't using them first.</p>
+    <p class="measure muted small">Competitor lines are summarised in English from their Italian homepages as published on 26 September 2026.</p>
+  </div>
+</section>
+
+<section class="section-white">
+  <div class="wrap">
+    <span class="eyebrow">04 — Audience read</span>
+    <h2>Two buyers, reading for different things.</h2>
     {deliverables([
-        ("Category position", "<p>Socialbooth operates across eight Italian cities with a wide capability set — photobooths, videobooths, interactive installations, advergaming, AI-driven experiences, branded merchandise. That range is a real strength. It's also a positioning risk: when a company can build almost anything, the brand has to work harder to say what it's <em>for</em>, or “does everything” reads as “known for nothing.”</p>"),
-        ("The promise, on the homepage", "<p>The headline — <em>“Non siamo fornitori. Siamo parte del risultato del tuo evento”</em> (“We're not vendors. We're part of your event's result.”) — is a strong, ownable position. It's close to the sentence a Positioning Audit is built to produce: specific, a little contrarian, and hard for a generic competitor to say with a straight face.</p>"),
-        ("Where the promise doesn't travel", "<p>The paid-search page built for “photobooth milano” — plausibly the first page many prospects ever see — is headlined <em>“Photobooth a Noleggio per Eventi e Fiere”</em> (“Photobooth Rental for Events and Trade Shows”) and closes on <em>“Richiedi un preventivo”</em> (“Request a Quote”). That's category-generic rental language, close to indistinguishable from an equipment-hire company. The promise lives on the homepage; for a meaningful share of first-touch traffic, the brand reads like the “vendor” the homepage rejects.</p>"),
-        ("One-page action plan", "<p>If this were a paid engagement, the plan would start here:</p><ul class='plain-list'><li>Carry “part of the result,” not “rental,” onto every paid landing page — for many buyers that's the only page they ever see.</li><li>Lead with one differentiator per audience instead of four equally weighted benefits (lead generation for marketers, attendee engagement for event planners). Four claims at once reads as none.</li><li>Group the catalog by outcome — leads, content, engagement, data — instead of by equipment. Buyers remember what a thing gets them, not what it's called.</li></ul>"),
+        ("The brand marketer", "<p>Has a budget line to justify. The homepage is written for this person — dwell time, content, leads, a dashboard — and that's right. What this buyer is missing is a reason to pick Socialbooth over the next supplier making the same promise, and numbers on the case pages to put in the internal report.</p>"),
+        ("The agency or event producer", "<p>The contact form asks “Chi sei?” with Azienda / Agenzia as the options, so agencies are clearly a core buyer. This person is staking their own client relationship on the supplier. The reviews speak straight to them — “Staff perfetto, servizio ottimo,” “Cortesia, professionalità e disponibilità” — but the site never addresses them directly.</p>"),
+        ("What both respond to", "<p>An attendee who is visibly having a good time is the one thing both buyers want and neither can produce alone. That's the emotional outcome the mission describes. Leading with it serves both: the marketer gets a differentiator, the producer gets a partner who makes the event look good.</p>"),
     ])}
+  </div>
+</section>
+
+<section class="section-paper">
+  <div class="wrap">
+    <span class="eyebrow">05 — Messaging gaps</span>
+    <h2>Four places where the brand works against itself.</h2>
+    {deliverables([
+        ("A catalogue that contradicts its own advice", "<p>The Photobooth Experience page says it well: <em>“Il photobooth giusto si sceglie sull'evento, non sul catalogo.”</em> The navigation above it is a catalogue: five families and 28 products, from Green Screen to Social Bike. A first-time buyer is asked to choose by product — exactly what the page tells them not to do.</p>" + figure("socialbooth-services-menu.jpg", "Socialbooth Servizi menu open: Photobooth Experience, Videobooth Experience, Interactive Experience, Advergaming &amp; Edutainment, Room Experience (New!).", "socialbooth.it — Servizi menu; each family opens into its own sub-list", "narrow")),
+        ("Results promised, rarely shown", "<p>The homepage promises results and a post-event dashboard with the data. Of the four case histories I read in full, one reports numbers — Petronas at the Turin Auto Show: over 1,100 shots, over 123,000 people reached, over 400,000 impressions. Hot Wheels, Fiat 500 at the Deejay Ten and Hoffman Essentials describe full stores and good moments, with no figures. For a brand that sells measurable outcomes, that's the proof buyers look for and mostly don't find.</p>"),
+        ("Two languages, two spellings, two looks", "<p>Visitors with an English-language browser are switched automatically to a machine translation (“engage them , and generate results .”). The logo tagline, the “We Create” line and the service family names are in English inside Italian copy. The Milano city page swaps the homepage's yellow and black for an orange-to-magenta gradient. And a second domain run by the same company, noleggiophotoboothmilano.it, sells the same service while calling the registered trademark “Social Booth” — two words, where the main site writes Socialbooth®.</p>" + figure("socialbooth-home-hero-en-auto.jpg", "Socialbooth homepage auto-translated into English: 'We transform events and trade shows into spaces that attract people, engage them , and generate results .'", "socialbooth.it — the same hero, auto-translated for an English-language browser (reviewer avatars blurred)") + figure("socialbooth-milano-landing.jpg", "Socialbooth Milano city page: large gradient 'Photobooth' lettering, headline 'Noleggio Photobooth a Milano per Eventi e Fiere.'", "socialbooth.it/noleggio-photobooth-milano — a different visual system from the homepage")),
+        ("Small slips that cost trust", "<p>On the Milano page: “Vuoi Noleggiare un Phootbooth a Milano per un’evento?” and “un importate occasione per fare Lead Generation.” In the case archive, industry tags read “Cyber Securty” and “Food &amp; Bverage,” and AI projects are tagged both “AI” and “IA.” Each is trivial on its own. Together, on a brand that sells polish at corporate events, they read as nobody owning the words.</p>"),
+    ])}
+  </div>
+</section>
+
+<section class="section-white">
+  <div class="wrap">
+    <span class="eyebrow">06 — Direction</span>
+    <h2>What the brand could say instead.</h2>
+    <p class="lede">A draft built only from Socialbooth's own published words — the positioning a paid engagement would pressure-test, not a finished answer.</p>
+    {deliverables([
+        ("Draft positioning", "<p class='lead-line'>“Bring emotion to life — and measure what it does for your brand.”</p><p>The first half is their mission, unchanged. The second half is the promise the homepage already makes. Together they say something no competitor in the scan can say: the feeling is the method, and the numbers are the receipt.</p>"),
+        ("Message order", "<p><strong>Promise:</strong> people at your event play, laugh and remember it. <strong>Mechanism:</strong> play is designed, not added — “il gioco crea emozioni, relazioni e fa sentire vivi.” <strong>Proof:</strong> dwell time, content, contacts and reach, reported per event, the way the Petronas case already does.</p>"),
+        ("Offer by goal, not by product", "<p>Group the 28 products under four event goals: <strong>Attract</strong> (bring people to the stand), <strong>Engage</strong> (keep them there), <strong>Capture</strong> (leads and data), <strong>Amplify</strong> (content and reach after the event). The products stay the same; the buyer chooses by what they need the event to do, which is the site's own advice.</p>"),
+    ])}
+  </div>
+</section>
+
+<section class="section-paper">
+  <div class="wrap">
+    <span class="eyebrow">07 — One-page action plan</span>
+    <h2>If this were a paid engagement, it would start here.</h2>
+    <div class="tiers">
+      <div>
+        <h4>This week</h4>
+        <ul>
+          <li>Fix the typos on the city pages and the case-archive tags.</li>
+          <li>Pick one spelling of the name and use it everywhere.</li>
+          <li>Set the page language to Italian and turn off automatic machine translation.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>This month</h4>
+        <ul>
+          <li>Put “Bring emotion to life” in the homepage hero, with “Non siamo fornitori” directly under it.</li>
+          <li>Add a four-line results block — shots, dwell time, contacts, reach — to every new case history, starting from the Petronas format.</li>
+          <li>Speak to agencies directly in one homepage section, using the reviews that already praise the team.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>This quarter</h4>
+        <ul>
+          <li>Restructure the services menu around the four goals: Attract, Engage, Capture, Amplify.</li>
+          <li>Bring the city pages into the homepage's visual system, and decide whether the second domain still earns its place.</li>
+          <li>Decide on English: a written English version, or Italian only. Machine translation shouldn't be the choice by default.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="methodology-note">What this audit leaves out: a paid Positioning Audit adds a working session with the team, access to analytics and enquiry data, and a read of which pages and products actually bring in revenue. None of that happened here. The direction above is a first draft from public material, meant to be argued with.</p>
   </div>
 </section>
 """ + CASE_CLOSE
 page("case-study-socialbooth.html", "Case Study: Socialbooth — Studio Dudin",
-     "A Positioning Audit of Socialbooth's current public brand, with past affiliation disclosed up front.", SB, active="work.html")
+     "A full Positioning Audit of Socialbooth's public brand: strong proof, a generic homepage, and a mission — Bring emotion to life — hidden on the Società Benefit page.", SB, active="work.html")
 
 # --- Ivana Vegetti (spec)
 IV = case_hero("Spec project — Brand Strategy Core",
