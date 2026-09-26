@@ -190,6 +190,9 @@ CASE_CARDS = {
     "cafezal": ("case-study-cafezal.html", "images/cafezal-catalog-grid-0926.jpg",
                 "Spec project · Brand Platform", "Cafezal Milano",
                 "A roaster whose farmers have names and stories — and a catalogue that leads with a score and a price."),
+    "rossignoli": ("case-study-rossignoli.html", "images/rossignoli-brands-menu.jpg",
+                   "Spec project · Positioning Audit", "Rossignoli",
+                   "A Milan bike maker since 1900 — frames welded near Milan — whose site files its own bikes as one brand among six, in Italian only."),
     "ivana": ("case-study-ivana-vegetti.html", "images/ivana-vegetti-homepage.jpg",
               "Spec project · Brand Strategy Core", "Ivana Vegetti",
               "A wedding studio that promises artistry — while its own clients keep praising something else."),
@@ -219,7 +222,7 @@ def work_cards(keys):
     return html
 
 
-WORK_CARDS = work_cards(["socialbooth", "velasca", "cafezal", "ivana"])
+WORK_CARDS = work_cards(["socialbooth", "rossignoli", "velasca", "cafezal", "ivana"])
 HOME_CARDS = work_cards(["socialbooth", "velasca"])
 
 # ---------------------------------------------------------------- index
@@ -462,7 +465,7 @@ WORK = f"""
   <div class="wrap">
     <span class="eyebrow">Work</span>
     <h1 class="page-title">This could be your <em>case study</em>.</h1>
-    <p class="lede">Studio Dudin is new: three spec projects and one disclosed audit, no paying clients yet. I'm not going to dress that up — pretending otherwise would be exactly the kind of vague brand move I'd flag in yours.</p>
+    <p class="lede">Studio Dudin is new: four spec projects and one disclosed audit, no paying clients yet. I'm not going to dress that up — pretending otherwise would be exactly the kind of vague brand move I'd flag in yours.</p>
   </div>
 </section>
 
@@ -918,6 +921,78 @@ VL = case_hero("Spec project — Positioning Audit",
      CASE_CLOSE
 page("case-study-velasca.html", "Spec Project: Velasca — Studio Dudin",
      "An unsolicited Positioning Audit: Velasca has Montegranaro workshops, 20+ botteghe and shoes named in Milanese dialect — and a homepage that only says Made in Italy.", VL, active="work.html")
+
+
+# ================================================================ ROSSIGNOLI
+RS_Q_HERO = it("Ricomincia con una Rossignoli.", "Start again with a Rossignoli.")
+RS_Q_SINCE = it("Dal 1900 una lunga storia.", "Since 1900, a long story.")
+RS_Q_META = it("la bottega storica di biciclette diventata simbolo di Milano", "the historic bicycle shop that became a symbol of Milan")
+RS_Q_KM0 = it("Le bici con telaio in acciaio sono prodotte a Milano e dintorni: il telaista è a Monza, i verniciatori tra il nord e il sud di Milano, insomma quasi a chilometro zero.", "The steel-frame bikes are made in and around Milan: the framebuilder is in Monza, the painters between the north and the south of Milan — practically zero-kilometre.")
+RS_Q_FACE = it("Perché abbiamo una faccia e una sede fisica vera e propria in corso Garibaldi 71 a Milano", "Because we have a face and a real, physical home at Corso Garibaldi 71 in Milan")
+RS_Q_PRICE = it("Lo sappiamo bene: ci sono sicuramente altri siti dove alcuni articoli hanno prezzi più competitivi.", "We know it well: there are certainly other sites where some items are priced more competitively.")
+RS_Q_STAFF = it("i nostri dipendenti sono come membri della nostra famiglia, hanno tutti un bel contratto e … paghiamo regolarmente i fornitori", "our staff are like members of our family, they all have a proper contract, and … we pay our suppliers on time")
+RS_Q_HAPPY = it("Una bicicletta felice", "A happy bicycle")
+RS_Q_30 = it("Se la tratti bene, dura trent’anni.", "Treat it well and it lasts thirty years.")
+RS_Q_EUROPE = it("Amatissima in tutta Europa, soprattutto in Germania e Olanda, dove di bici se ne intendono.", "Much loved all over Europe, above all in Germany and the Netherlands, where they know a thing or two about bikes.")
+RS_Q_1946 = it("La bici Rossignoli per tutti, in strada dal 1946.", "The Rossignoli bike for everyone, on the road since 1946.")
+RS_Q_TOMMASO = it("non fatelo arrabbiare", "don't make him angry")
+RS_Q_VELASCA = it("Qui protagonista degli spot Velasca.", "Here starring in the Velasca ads.")
+RS_Q_RENT = it("il servizio di noleggio per turisti è momentaneamente sospeso", "the rental service for tourists is temporarily suspended")
+
+RS = case_hero("Spec project — Positioning Audit",
+               "Rossignoli: a Milan bike maker since 1900, filed as <em>one brand among six</em>.",
+               "Rossignoli builds its own steel bikes near Milan, has been on Corso Garibaldi for about a century, holds the city's civic award, and writes some of the warmest product copy in Italian retail. Its website is organised like a multi-brand bike shop — which it also is — and the maker gets lost inside the shop.",
+               "Reviewed 27 September 2026 · Scope: homepage, Chi siamo (About), the Rossignoli bikes page, three product pages (Garibaldi 71, Classica, Milano), the services pages (business, rentals, workshop) and the terms page at rossignoli.it, compared with three Milan bike shops. Public material only: no interviews, no data, nothing internal. Rossignoli's site is in Italian; quotes are given in the original with my English translation in brackets.") + \
+     callout("This is speculative work, not a client relationship",
+             "I picked Rossignoli and this gap on my own initiative — no engagement, no affiliation, nothing commissioned, nothing beyond what's public on their site. It exists to show how I'd approach a Positioning Audit, not to claim I was hired for one. If Rossignoli would rather this page not exist, email me and it comes down.") + \
+     summary("Rossignoli has been making bikes in Milan for more than 125 years, and its website files the maker under the shop.",
+             "The steel frames are welded in Monza and painted around Milan. The shop has been open on Corso Garibaldi for about a hundred years, the family is on its fifth generation, and the City of Milan gave it the Ambrogino in 2021. On the site, the house bikes sit in a “Marchi” (Brands) menu as one logo among six, next to Bianchi and Cinelli, and the page that lists them is titled “Rossignoli Archives” in the browser tab. The whole site is in Italian only — while its best-selling bike is described as loved above all in Germany and the Netherlands.") + \
+     section("section-white", "Scorecard", "Where the brand stands today, in four categories.",
+             scorecard([("Product &amp; proof", "Strong"), ("Voice", "Strong"), ("Maker story reaching the buyer", "Weak"), ("Reach beyond Italian speakers", "Weak")]) +
+             '<p class="measure muted small" style="margin-top: var(--space-lg);">Two strong scores are rare in these audits. Rossignoli doesn\'t need a new voice or a new story. It needs the story it already tells to stop being filed under someone else\'s logo.</p>') + \
+     section("section-paper", "01 — What a buyer sees first", "The right headline, then a department-store floor plan.",
+             f'<p class="measure">The homepage opens well: {RS_Q_HERO} It\'s personal, it assumes you\'ll own one, and it uses the family name as a noun. The third slide adds {RS_Q_SINCE} Then the page turns into thirteen tiles: the house bikes, an end-of-summer sale, Bianchi, Cinelli, Riese &amp; Müller e-bikes, clothing, a bike-fit test, gift cards, family cargo bikes, bikes for companies, Garmin, helmets, shoes. Every tile is useful. Together they say “bike shop,” and the maker is one tile of thirteen.</p>' +
+             f'<p class="measure">The navigation does the same. Open “Bici” and the house brand appears in red at the start of a row of logos — Rossignoli, Bianchi, Cinelli, Riese &amp; Müller, tokyobike, Filippo Zanazzi. Click it and the browser tab reads “Rossignoli Archives,” a default label from the site\'s software. The description written for search engines gets it right — {RS_Q_META} — but a visitor never sees it on the page.</p>' +
+             figure("rossignoli-brands-menu.jpg", "Rossignoli website: the Bici menu lists Rossignoli, Bianchi, Cinelli, Riese & Müller, tokyobike and Filippo Zanazzi as brands, above the page Bici: Rossignoli.", "rossignoli.it/marchi/bici/rossignoli — the house bikes as one logo in the “Marchi” (Brands) row, as published, 27 September 2026")) + \
+     section("section-white", "02 — What Rossignoli actually has", "Six assets, all published, most of them one click deep.",
+             deliverables([
+                 ("A maker, not only a shop", f"<p>{RS_Q_KM0} Aluminium and carbon frames are bought in, then painted, specced and assembled in-house. Very few shops in Milan can say this. On the site it is one paragraph in the middle of the About page.</p>"),
+                 ("A century on one street", f"<p>{RS_Q_FACE}, open to the public “for a good hundred years.” On 7 December 2021, Sant'Ambrogio's day, the City of Milan awarded the shop the Ambrogino, its civic merit award. Five generations are listed by name, from Giorgio of Arena Po, “the pioneer,” to Matia and Matteo, “the present.”</p>" + figure("rossignoli-perche-comprare.jpg", "Rossignoli About page, section Perché comprare da noi: a real shop at Corso Garibaldi 71 and long relationships with suppliers.", "rossignoli.it/chi-siamo — “Perché comprare da noi” (“Why buy from us”), as published, 27 September 2026", "narrow")),
+                 ("Candour most shops wouldn't publish", f"<p>The same section admits: {RS_Q_PRICE} Its answer isn't a discount. It's that {RS_Q_STAFF}. That is a values position — the kind brands pay agencies to invent — written plainly and hidden on the About page.</p>"),
+                 ("A voice people remember", f"<p>The Garibaldi 71 product page calls it {RS_Q_HAPPY} and adds {RS_Q_30} The Classica is {RS_Q_1946} This is copy with a smile and a promise in it, and it's consistent across the house models.</p>" + figure("rossignoli-garibaldi-71.jpg", "Rossignoli Garibaldi 71 product page: description calling it a happy bicycle, zero-kilometre, lasting thirty years, loved in Germany and the Netherlands; price from €575.", "rossignoli.it/prodotto/rossignoli-garibaldi-71-uomo — the product copy, as published, 27 September 2026")),
+                 ("People with names", f"<p>The About page introduces the mechanics one by one: Ercole, “from Sicily,” is the boss of the via Solari workshop; Tommaso is a bike-polo player and former messenger — {RS_Q_TOMMASO}. It's the most human staff page I've read on an Italian retail site.</p>"),
+                 ("Proof from outside", f"<p>A bike fleet and maintenance for Moncler; the bikes for Uniqlo's first store in Italy; collaborations from Tod's to AC Milan, Inter and Juventus; a video by YesMilano, the city's promotion agency, titled “Rossignoli: Cycling heart of the city.” And the Milano model's page notes, {RS_Q_VELASCA}</p>"),
+             ])) + \
+     section("section-paper", "03 — Competitive scan", "The same idea sold by a younger shop, in two languages.",
+             scan_table([
+                 ("Rossignoli", f"{RS_Q_HERO}", "Since 1900; own steel frames made near Milan; the Ambrogino (2021); Moncler and Uniqlo projects", "Milan riders, companies, film and fashion — in Italian only"),
+                 ("La Ciclistica Milano", "Artisanal, personalised city and touring bikes — “Telai 100% Italiani” (“100% Italian frames”)", "Founded in the early 2000s; custom builds; workshop; a programme for hotels and resorts", "City riders, travellers, hotels — in Italian and English"),
+                 ("La Bicicletteria", "A reference point for cycling fans, " + it("fondata nel 1985 sui Navigli di Milano", "founded in 1985 on Milan's Navigli"), "Wide range across e-bike, gravel, road and MTB; used bikes", "Enthusiasts across disciplines"),
+                 ("La Stazione delle Biciclette", "Sales and service for cargo, folding, touring, urban and artisanal bikes", "Several shops in Milan; online catalogue; customisation", "Urban riders and families"),
+             ], "Rossignoli") +
+             '<p class="measure" style="margin-top: var(--space-lg);">La Bicicletteria and La Stazione sell range. La Ciclistica Milano sells the idea closest to Rossignoli\'s — Italian-made city bikes, built to order — and it does so in Italian and English, with an offer for hotels. Rossignoli has more of everything that idea needs: a century more history, its own framebuilder, a civic award, a street address people recognise. It tells that story to Italian readers only, and mostly below the fold.</p>' +
+             '<p class="measure muted small">Competitor lines are quoted or summarised from their homepages and homepage descriptions as published on 27 September 2026.</p>') + \
+     section("section-white", "04 — Audience read", "Who buys, and what tips them.",
+             deliverables([
+                 ("The Milanese regular", "<p>Knows the shop, books a service on WhatsApp, buys a Garibaldi 71 for their partner. The current site serves them well; the story is a bonus, not a reason.</p>"),
+                 ("The visitor and the international Milanese", f"<p>Finds Rossignoli through YesMilano, Instagram or by walking down Corso Garibaldi, and wants the souvenir that lasts thirty years. They can't read the site, and right now {RS_Q_RENT}. This is the buyer the product copy says already exists — in Germany and the Netherlands — and the one the site does least for.</p>"),
+                 ("The company", "<p>Wants a fleet, a branded bike, a location for an event. The business page is good and has real names on it. What would help: leading with “we build them,” since a fleet from the maker is a different offer from a fleet from a shop.</p>"),
+             ])) + \
+     section("section-paper", "05 — Direction", "What the brand could say instead.",
+             '<p class="lede">A draft built only from Rossignoli\'s own published words — the positioning a paid engagement would pressure-test, not a finished answer.</p>' +
+             deliverables([
+                 ("Draft positioning", "<p class='lead-line'>“Milan's bicycle maker since 1900. Built near Milan, sold on Corso Garibaldi.”</p><p>It leads with the part no ordinary shop can claim — making — and keeps the shop as the proof of place. Bianchi and Cinelli stay on the site; they just stop sharing the top line with the family name.</p>"),
+                 ("Message order", "<p><strong>Made:</strong> the frames, welded in Monza and painted around Milan. <strong>Where:</strong> Corso Garibaldi 71, open for about a century. <strong>Who:</strong> five generations and mechanics with names. <strong>Also:</strong> the brands we trust, a workshop, bike fitting, fleets for companies.</p>"),
+                 ("Structure", "<p>Give “Le Rossignoli” its own place in the menu, separate from “Marchi.” Fix the “Rossignoli Archives” page title. Put the zero-kilometre paragraph on the house-bikes page, where people choose. Then English — starting with the About page and the Garibaldi 71, the model its own copy calls loved in Germany and the Netherlands.</p>"),
+             ])) + \
+     section("section-white", "06 — One-page action plan", "If this were a paid engagement, it would start here.",
+             tiers(["Rename the house-bikes page title from “Rossignoli Archives” to something like “Biciclette Rossignoli — fatte a Milano dal 1900.”", "Add one line under the homepage hero: frames welded near Milan, sold on Corso Garibaldi for about a century.", "Move “Le biciclette Rossignoli” out of the brands row into its own menu item."],
+                   ["English versions of the About page, Contatti and the house-bike pages, starting with the Garibaldi 71.", "Put the zero-kilometre paragraph and the Ambrogino on the house-bikes page.", "Bring the YesMilano video and the Moncler / Uniqlo work onto the homepage."],
+                   ["A “Fatte a Milano” page: the framebuilder in Monza, the painters, the assembly — as far as they want to be named.", "Relaunch tourist rentals with an English booking page and the Garibaldi 71 as the rental bike.", "Test the house bikes as the first four homepage tiles and measure clicks through to product pages."]) +
+             '<p class="methodology-note">What this spec version leaves out: a paid Positioning Audit adds a working session with the family, sales data by model and channel, and a look at who actually buys online versus in the shop. None of that happened here. The direction above is a first draft from public material, meant to be argued with.</p>') + \
+     CASE_CLOSE
+page("case-study-rossignoli.html", "Spec Project: Rossignoli — Studio Dudin",
+     "An unsolicited Positioning Audit: Rossignoli builds its own bikes near Milan and has been on Corso Garibaldi for a century — and its website files the house bikes as one brand among six, in Italian only.", RS, active="work.html")
 
 
 # ---------------------------------------------------------------- redirects for retired URLs (GitHub Pages ignores _redirects)
