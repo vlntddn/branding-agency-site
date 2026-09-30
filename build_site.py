@@ -228,18 +228,41 @@ HOME_CARDS = work_cards(["socialbooth", "velasca"])
 # ---------------------------------------------------------------- index
 
 INDEX = f"""
-<section class="hero">
-  <img src="brand-assets/d-mark-ink.svg" alt="" class="hero-d" aria-hidden="true">
-  <div class="wrap">
-    <span class="eyebrow">Brand strategy · Milano</span>
-    <h1>Brand strategy built with the <em>rigor</em> of a luxury house — sized for where you are now.</h1>
-    <p class="lede">Studio Dudin is a brand strategy practice for small businesses and founders who want more than a logo: a clear position, a voice people remember, and a plan they can actually run.</p>
-    <div class="cta-row">
-      <a href="contact.html" class="btn btn-primary">Book a Positioning Audit</a>
-      <a href="approach.html" class="btn btn-outline">How it works</a>
+<section class="hero hero-home">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Brand strategy · Milano</span>
+      <h1>Brand strategy built with the <em>rigor</em> of a luxury house — sized for where you are now.</h1>
+      <p class="lede">Studio Dudin is a brand strategy practice for small businesses and founders who want more than a logo: a clear position, a voice people remember, and a plan they can actually run.</p>
+      <div class="cta-row">
+        <a href="contact.html" class="btn btn-primary">Book a Positioning Audit</a>
+        <a href="approach.html" class="btn btn-outline">How it works</a>
+      </div>
+      <p class="reassure">The first call is 20 minutes, no slides, no pitch. If it's not a fit, I'll say so.</p>
     </div>
-    <p class="reassure">The first call is 20 minutes, no slides, no pitch. If it's not a fit, I'll say so.</p>
+    <figure class="viz viz-map" id="viz-map" aria-label="Animated positioning map: a crowd of look-alike competitors in the middle of the map, and one brand moving out to a clear, empty position of its own.">
+      <div class="viz-bar"><span>Positioning map</span><span class="viz-state" data-state>Unclear</span></div>
+      <svg viewBox="0 0 480 440" role="img" aria-hidden="true" focusable="false">
+        <g class="map-grid">
+          <line x1="40" y1="220" x2="460" y2="220"/><line x1="240" y1="20" x2="240" y2="420"/>
+          <rect x="40" y="20" width="420" height="400"/>
+        </g>
+        <text class="map-axis" x="240" y="437" text-anchor="middle">Premium &#8594; Accessible</text>
+        <text class="map-axis" x="14" y="220" text-anchor="middle" transform="rotate(-90 14 220)">Generic &#8594; Distinct</text>
+        <circle class="map-crowd-zone" cx="240" cy="290" r="88"/>
+        <circle class="map-open" cx="368" cy="110" r="58" data-open/>
+        <text class="map-tag" x="240" y="402" text-anchor="middle" data-crowd-tag>Everyone sounds the same</text>
+        <g data-crowd></g>
+        <g class="map-you" data-you transform="translate(240 290)">
+          <circle class="map-ring" r="12" data-ring/>
+          <circle class="map-dot-you" r="9"/>
+          <text class="map-you-label" x="16" y="-14">YOU</text>
+        </g>
+        <text class="map-tag map-tag-you" x="452" y="44" text-anchor="end" data-you-tag>A position of your own</text>
+      </svg>
+    </figure>
   </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Positioning</span><span>Messaging</span><span>Brand voice</span><span>Naming</span><span>Launch plan</span><span>Positioning</span><span>Messaging</span><span>Brand voice</span><span>Naming</span><span>Launch plan</span><span>Positioning</span><span>Messaging</span><span>Brand voice</span><span>Naming</span><span>Launch plan</span><span>Positioning</span><span>Messaging</span><span>Brand voice</span><span>Naming</span><span>Launch plan</span></div></div>
 </section>
 
 <section class="section-white">
@@ -265,6 +288,18 @@ INDEX = f"""
         </ul>
       </div>
     </div>
+    <figure class="viz viz-chart" id="viz-chart" aria-label="Illustrative chart: without a clear brand, recognition resets with every new campaign; with one, each campaign builds on the last.">
+      <div class="viz-bar"><span>Recognition, campaign by campaign</span><span class="viz-note">Illustrative model, not client data</span></div>
+      <ul class="viz-legend"><li><i class="sw sw-bad"></i>Left unclear: every campaign starts from zero</li><li><i class="sw sw-good"></i>Made clear once: each campaign builds on the last</li></ul>
+      <svg viewBox="0 0 900 300" role="img" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet">
+        <g class="ch-grid"><line x1="60" y1="250" x2="880" y2="250"/><line x1="60" y1="170" x2="880" y2="170"/><line x1="60" y1="90" x2="880" y2="90"/><line x1="60" y1="20" x2="60" y2="250"/></g>
+        <g class="ch-marks"><line x1="240" y1="250" x2="240" y2="258"/><line x1="420" y1="250" x2="420" y2="258"/><line x1="600" y1="250" x2="600" y2="258"/><line x1="780" y1="250" x2="780" y2="258"/></g>
+        <text class="ch-axis" x="60" y="278" text-anchor="middle">1</text><text class="ch-axis" x="240" y="278" text-anchor="middle">2</text><text class="ch-axis" x="420" y="278" text-anchor="middle">3</text><text class="ch-axis" x="600" y="278" text-anchor="middle">4</text><text class="ch-axis" x="780" y="278" text-anchor="middle">5</text>
+        <path class="ch-line ch-bad" pathLength="1" d="M60 250 L150 170 L240 250 L330 190 L420 250 L510 176 L600 250 L690 186 L780 250 L870 180"/>
+        <path class="ch-line ch-good" pathLength="1" d="M60 250 C150 215 200 205 240 196 C330 176 380 168 420 150 C510 122 560 112 600 96 C690 70 740 60 780 50 C820 42 850 36 870 32"/>
+        <circle class="ch-end" cx="870" cy="32" r="5"/>
+      </svg>
+    </figure>
   </div>
 </section>
 
@@ -286,9 +321,9 @@ INDEX = f"""
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><span class="num">15%</span><span class="label">engagement lift after a product was changed to match what the research found (MTS Bank)</span></div>
-      <div class="stat"><span class="num">8</span><span class="label">moderated hall tests run for one product</span></div>
-      <div class="stat"><span class="num">5+</span><span class="label">competing platforms benchmarked, mapped to a 5-stage customer journey</span></div>
+      <div class="stat"><i class="stat-bar"></i><span class="num" data-count="15" data-suffix="%">15%</span><span class="label">engagement lift after a product was changed to match what the research found (MTS Bank)</span></div>
+      <div class="stat"><i class="stat-bar"></i><span class="num" data-count="8">8</span><span class="label">moderated hall tests run for one product</span></div>
+      <div class="stat"><i class="stat-bar"></i><span class="num" data-count="5" data-suffix="+">5+</span><span class="label">competing platforms benchmarked, mapped to a 5-stage customer journey</span></div>
     </div>
     <div class="cta-row">
       <a href="approach.html" class="btn btn-outline">Read the full approach</a>

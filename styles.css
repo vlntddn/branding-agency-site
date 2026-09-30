@@ -382,3 +382,89 @@ em[lang="it"] { font-style: italic; }
 
 /* Contact form: spam honeypot (hidden from people) */
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* ---------- Motion graphics (home) ----------
+   Ink and paper only. Every animation is decoration: with JS off or
+   reduced motion the graphics render in their finished state. */
+
+/* Hero: copy left, animated positioning map right */
+.hero-home { padding-bottom: 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: var(--space-xl); align-items: center; padding-bottom: var(--space-xl); }
+.hero-home h1 { font-size: clamp(2.3rem, 4.4vw, 3.7rem); max-width: none; }
+.hero-home .lede { max-width: 560px; }
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: var(--space-xl); } }
+
+/* Staggered entrance for hero copy */
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.hero-copy > * { animation: rise .9s var(--ease) backwards; }
+.hero-copy > :nth-child(2) { animation-delay: .08s; }
+.hero-copy > :nth-child(3) { animation-delay: .2s; }
+.hero-copy > :nth-child(4) { animation-delay: .3s; }
+.hero-copy > :nth-child(5) { animation-delay: .4s; }
+.viz-map { animation: rise 1s .25s var(--ease) backwards; }
+
+/* Framed figure */
+.viz { margin: 0; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-sm); }
+.viz-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-md); padding: 12px var(--space-md); border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.viz-state { color: var(--ink); min-width: 9ch; text-align: right; }
+.viz-state::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); margin-right: 8px; vertical-align: 1px; }
+.viz svg { display: block; width: 100%; height: auto; }
+.viz-map svg { padding: var(--space-sm) var(--space-sm) var(--space-md); }
+
+.map-grid line, .map-grid rect { stroke: var(--line); fill: none; stroke-width: 1; }
+.map-axis { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--gray); }
+.map-crowd-zone { fill: none; stroke: var(--gray); stroke-width: 1; stroke-dasharray: 3 5; }
+.map-open { fill: none; stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 5; opacity: 0; }
+.map-dot { fill: var(--gray); opacity: 0.55; }
+.map-dot-you { fill: var(--ink); }
+.map-ring { fill: none; stroke: var(--ink); stroke-width: 1.5; opacity: 0; }
+.map-trail { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 2 5; fill: none; }
+.map-guide { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 2 4; opacity: 0; }
+.map-tag, .map-you-label { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--muted); }
+.map-you-label { fill: var(--ink); font-weight: 500; }
+.map-tag-you { fill: var(--ink); opacity: 0; }
+
+/* Ticker */
+.ticker { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: var(--paper); }
+.ticker-track { display: flex; width: max-content; animation: ticker 38s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker span { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); padding: 18px 0; white-space: nowrap; }
+.ticker span::after { content: "/"; color: var(--gray); margin: 0 var(--space-lg); }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* Chart: recognition resets vs. compounds */
+.viz-chart { margin-top: var(--space-xl); }
+.viz-note { color: var(--gray); }
+.viz-legend { list-style: none; margin: 0; padding: var(--space-md) var(--space-md) 0; display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-lg); font-size: 0.92rem; color: var(--muted); }
+.viz-legend li { display: flex; align-items: center; gap: 10px; }
+.sw { display: inline-block; width: 28px; height: 0; border-top: 2px solid var(--gray); }
+.sw-good { border-top: 3px solid var(--ink); }
+.viz-chart svg { padding: var(--space-sm) var(--space-md) var(--space-md); }
+.ch-grid line { stroke: var(--line); stroke-width: 1; }
+.ch-marks line { stroke: var(--gray); stroke-width: 1; }
+.ch-axis { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; fill: var(--gray); }
+.ch-line { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.ch-bad { stroke: var(--gray); stroke-width: 2; }
+.ch-good { stroke: var(--ink); stroke-width: 3; }
+.ch-end { fill: var(--ink); }
+html.viz-on .viz-chart .ch-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+html.viz-on .viz-chart .ch-end { opacity: 0; }
+html.viz-on .viz-chart.is-play .ch-line { stroke-dashoffset: 0; transition: stroke-dashoffset 2s var(--ease); }
+html.viz-on .viz-chart.is-play .ch-good { transition-duration: 2.6s; transition-delay: .5s; }
+html.viz-on .viz-chart.is-play .ch-end { opacity: 1; transition: opacity .4s 3s; }
+@media (max-width: 640px) { .ch-axis { font-size: 24px; } .viz-chart svg { padding-left: var(--space-sm); padding-right: var(--space-sm); } .viz-note { display: none; } }
+
+/* Stats: hairline draws across, number counts up */
+.stat-bar { display: block; height: 2px; background: var(--ink); margin-bottom: var(--space-md); transform-origin: left; }
+.stat .num { font-variant-numeric: tabular-nums; }
+html.viz-on .stat-bar { transform: scaleX(0); }
+html.viz-on .stats.is-play .stat-bar { transform: none; transition: transform 1.4s var(--ease); }
+html.viz-on .stats.is-play .stat:nth-child(2) .stat-bar { transition-delay: .15s; }
+html.viz-on .stats.is-play .stat:nth-child(3) .stat-bar { transition-delay: .3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy > *, .viz-map { animation: none !important; }
+  .ticker-track { animation: none !important; }
+  .ticker { overflow-x: auto; }
+}
