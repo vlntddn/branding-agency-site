@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Generates the Studio Dudin static site into ./build (shared header/footer)."""
+"""Generates the Studio Dudin static site in place (shared header/footer, sitemap, robots)."""
 import os
 
 OUT = os.path.dirname(os.path.abspath(__file__))
+SITE = "https://www.studiodudin.com"
 EMAIL = "hello@studiodudin.com"
 # Google Apps Script web-app URL (form → "Studio Dudin — Site inquiries" sheet + email to EMAIL).
 # Empty = the form falls back to composing an email in the visitor's mail app.
@@ -16,7 +17,34 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
 NAV = [("index.html", "Home"), ("approach.html", "Approach"), ("work.html", "Work"), ("contact.html", "Contact")]
 
 
-def head(title, desc):
+def share_card(fname):
+    """Share image for a page, rendered by make_share_cards.js."""
+    return "images/share/" + fname.replace(".html", ".png")
+
+
+def url_for(fname):
+    return SITE + "/" if fname == "index.html" else f"{SITE}/{fname}"
+
+
+def seo(title, desc, fname):
+    if fname == "404.html":
+        return '<meta name="robots" content="noindex">'
+    kind = "article" if fname.startswith("case-study-") else "website"
+    img = f"{SITE}/{share_card(fname)}"
+    return f"""<link rel="canonical" href="{url_for(fname)}">
+<meta property="og:type" content="{kind}">
+<meta property="og:site_name" content="Studio Dudin">
+<meta property="og:url" content="{url_for(fname)}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{img}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{title}">
+<meta name="twitter:card" content="summary_large_image">"""
+
+
+def head(title, desc, fname):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +52,7 @@ def head(title, desc):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<meta property="og:title" content="{title}">
-<meta property="og:description" content="{desc}">
+{seo(title, desc, fname)}
 <meta name="theme-color" content="#FAFAFA">
 {FONTS}
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -82,8 +109,13 @@ FOOTER = f"""
 """
 
 
+PAGES = []   # indexable pages, in build order, for sitemap.xml
+
+
 def page(fname, title, desc, body, active=None):
-    html = head(title, desc) + header(active or fname) + body + FOOTER
+    if fname != "404.html":
+        PAGES.append(fname)
+    html = head(title, desc, fname) + header(active or fname) + body + FOOTER
     with open(os.path.join(OUT, fname), "w", encoding="utf-8") as f:
         f.write(html)
 
@@ -1036,7 +1068,7 @@ REDIRECTS = {"about.html": "approach.html", "services.html": "approach.html#serv
 for old, new in REDIRECTS.items():
     with open(os.path.join(OUT, old), "w", encoding="utf-8") as f:
         f.write(f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Studio Dudin</title>
-<meta http-equiv="refresh" content="0; url={new}"><link rel="canonical" href="https://www.studiodudin.com/{new.split('#')[0]}">
+<meta http-equiv="refresh" content="0; url={new}"><link rel="canonical" href="{SITE}/{new.split('#')[0]}">
 <meta name="robots" content="noindex"></head><body><p><a href="{new}">Continue to Studio Dudin</a></p></body></html>
 """)
 with open(os.path.join(OUT, "_redirects"), "w") as f:
@@ -1054,4 +1086,12 @@ page("404.html", "Page not found — Studio Dudin", "This page doesn't exist.", 
   </div>
 </section>
 """, active="")
+
+
+# ---------------------------------------------------------------- sitemap and robots (redirect pages and 404 stay out)
+with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            + "".join(f"  <url><loc>{url_for(p)}</loc></url>\n" for p in PAGES) + "</urlset>\n")
+with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as f:
+    f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 print("built")
