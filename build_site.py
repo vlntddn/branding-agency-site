@@ -13,7 +13,7 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">')
 
-NAV = [("index.html", "Home"), ("approach.html", "Approach"), ("work.html", "Work"), ("contact.html", "Contact")]
+NAV = [("index.html", "Home"), ("approach.html", "Approach"), ("work.html", "Work"), ("brand-check.html", "Brand Check"), ("contact.html", "Contact")]
 
 
 def head(title, desc):
@@ -69,6 +69,7 @@ FOOTER = f"""
         <a href="mailto:{EMAIL}">{EMAIL}</a>
         <a href="approach.html">Approach</a>
         <a href="work.html">Work</a>
+        <a href="brand-check.html">Brand Check — €1,200</a>
         <a href="approach.html#products">Self-serve products</a>
         <a href="contact.html">Contact</a>
       </div>
