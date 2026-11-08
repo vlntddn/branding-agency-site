@@ -9,6 +9,7 @@ EMAIL = "hello@studiodudin.com"
 FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbz1nMEwYZVbA4vdsZsjTs1JgqZWeOoLk9m_YjhgDcfxmfBoQBJPPGKQM6UPHVeDYTHi6w/exec"
 FORM_BUTTON = "Send" if FORM_ENDPOINT else "Write the email"
 GUMROAD = "https://vlntddn.gumroad.com"   # one place to change the store link
+CALENDLY = "https://calendly.com/valentinddn2803/30min"   # Valentin's live 30-min booking (verified 2026-11-08)
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">')
@@ -90,9 +91,11 @@ def page(fname, title, desc, body, active=None):
 
 
 def closing(h2="Want a clear read on your brand?", sub=None,
-            btn="Book a Positioning Audit", note="€1,200 · 1 week · no obligation beyond the audit itself"):
+            btn="Book a Positioning Audit", note="€1,200 · 1 week · no obligation beyond the audit itself",
+            book=True):
     sub_html = f'<p class="lede" style="margin-top: var(--space-md);">{sub}</p>' if sub else ""
     note_html = f'<p class="reassure" style="color: rgba(255,255,255,0.66);">{note}</p>' if note else ""
+    book_html = f'<a href="{CALENDLY}" class="btn btn-outline">Book a 30-min intro call</a>' if book else ""
     return f"""
 <section class="section-black closing">
   <img src="brand-assets/d-mark-paper.svg" alt="" class="closing-d" aria-hidden="true">
@@ -101,6 +104,7 @@ def closing(h2="Want a clear read on your brand?", sub=None,
     {sub_html}
     <div class="cta-row">
       <a href="contact.html" class="btn btn-primary">{btn}</a>
+      {book_html}
     </div>
     {note_html}
   </div>
@@ -588,6 +592,7 @@ CONTACT = f"""
       <h3>Prefer to write directly?</h3>
       <p><a href="mailto:{EMAIL}" class="text-link">{EMAIL}</a></p>
       <p>No mailing list, no automated sequence — a reply from me, usually within a day.</p>
+      <p>Or skip the email: <a href="{CALENDLY}" target="_blank" rel="noopener" class="text-link">book a 30-minute intro call</a>.</p>
       <p>Based in Milan. Working in English, Italian and Russian, with clients anywhere.</p>
     </aside>
   </div>
