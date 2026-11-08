@@ -212,7 +212,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ---------- Self-serve products (Gumroad) ---------- */
-.products { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: var(--space-xl); border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--white); }
+.free-card { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); margin-top: var(--space-xl); padding: var(--space-lg); background: var(--black); color: var(--white); border-radius: var(--radius-sm); }
+.free-card-body { display: flex; flex-direction: column; gap: var(--space-sm); max-width: 640px; }
+.free-tag { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255, 255, 255, 0.62); }
+.free-card h3 { color: var(--white); font-size: 1.35rem; margin: 0; }
+.free-card p { color: rgba(255, 255, 255, 0.78); font-size: 0.95rem; margin: 0; }
+.free-card .btn-primary { background: var(--white); color: var(--black); flex-shrink: 0; white-space: nowrap; }
+.free-card .btn-primary:hover { background: var(--ink); color: var(--white); }
+.products { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: var(--space-lg); border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--white); }
 .product { padding: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-sm); }
 .product + .product { border-left: 1px solid var(--line); }
 .product .price { font-family: var(--font-mono); font-size: 1.15rem; }
@@ -228,6 +235,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @media (max-width: 560px) {
   .products { grid-template-columns: 1fr; }
   .product + .product { border-left: 0; border-top: 1px solid var(--line); }
+  .free-card { flex-direction: column; align-items: flex-start; }
+  .free-card .btn-primary { width: 100%; text-align: center; }
 }
 
 /* ---------- Work cards ---------- */
