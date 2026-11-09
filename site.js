@@ -186,5 +186,11 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     targets.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+    // Fail-safe: if the observer never fires (headless render, long idle,
+    // printing), reveal everything anyway. Content must never stay hidden.
+    setTimeout(function () { targets.forEach(function (el) { el.classList.add('is-visible'); }); }, 4000);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { targets.forEach(function (el) { el.classList.add('is-visible'); }); }
+    });
   } catch (err) { /* fail safe: content stays visible */ }
 })();
