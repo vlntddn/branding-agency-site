@@ -161,11 +161,12 @@
     function countUp(root) {
       root.querySelectorAll('[data-count]').forEach(function (el) {
         var end = parseFloat(el.getAttribute('data-count')), suf = el.getAttribute('data-suffix') || '', t0 = null;
-        el.textContent = '0' + suf;
+        var floor = Math.max(1, Math.round(end * 0.2)); // never show 0: slow clients, bots, crawlers read mid-tween
+        el.textContent = floor + suf;
         var step = function (now) {
           if (t0 === null) t0 = now;
           var k = clamp((now - t0) / 1400);
-          el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))) + suf;
+          el.textContent = Math.round(floor + (end - floor) * (1 - Math.pow(1 - k, 3))) + suf;
           if (k < 1) requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
